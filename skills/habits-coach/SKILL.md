@@ -1,5 +1,5 @@
 ---
-name: chessbrah-habits
+name: habits-coach
 description: Chess habits coach based on the ChessBrah "Building Habits" series. Use this skill when the user provides a chess position (move list, PGN, or description of the last move) and asks what to play, asks for a move recommendation, or mentions "habits coach", "chessbrah habits", or "level N habits". Ask for the level if not provided.
 ---
 

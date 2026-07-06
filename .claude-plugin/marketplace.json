@@ -1,0 +1,19 @@
+{
+  "name": "jeffwindsor-chessbrah",
+  "owner": {
+    "name": "Jeff Windsor"
+  },
+  "metadata": {
+    "description": "Chess habits coach based on the ChessBrah Building Habits series."
+  },
+  "plugins": [
+    {
+      "name": "chessbrah",
+      "source": {
+        "source": "github",
+        "repo": "jeffwindsor/chessbrah"
+      },
+      "description": "Chess habits coach applying a deterministic rule-priority decision tree across all four ChessBrah habit levels."
+    }
+  ]
+}
