@@ -1,5 +1,5 @@
 {
-  "name": "jeffwindsor-chessbrah",
+  "name": "jeffwindsor-chessbrah-habits",
   "owner": {
     "name": "Jeff Windsor"
   },
@@ -11,7 +11,7 @@
       "name": "chessbrah",
       "source": {
         "source": "github",
-        "repo": "jeffwindsor/chessbrah"
+        "repo": "jeffwindsor/chessbrah-habits"
       },
       "description": "Chess habits coach applying a deterministic rule-priority decision tree across all four ChessBrah habit levels."
     }
