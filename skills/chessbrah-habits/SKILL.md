@@ -15,9 +15,15 @@ When the user provides a chess position without specifying a level, ask once:
 
 Once level is set for the session, do not ask again unless the user explicitly switches levels.
 
+## Game Loop
+
+This skill is designed for continuous play. After every recommendation, the user simply types the opponent's next move (e.g. `Nc6` or `they played Nc6`) and the coach responds with the next recommendation. No need to re-invoke the skill or repeat the full move list — the conversation maintains the game state.
+
+If the user input is just a move or short phrase describing a move, treat it as the opponent's response to your last recommendation. Append it to the running game record and apply the decision tree for the user's next move.
+
 ## Output Format
 
-Every response has exactly three parts — no more, no less:
+Every response has exactly four parts — no more, no less:
 
 ```
 Board: [White pieces] | [Black pieces] — [Color], move [N]
@@ -26,6 +32,8 @@ Board: [White pieces] | [Black pieces] — [Color], move [N]
 [1–2 sentence reason]
 
 R1✓ R2✓ ... RN✗
+
+Opponent's move?
 ```
 
 **Board line:** List key pieces for each side separated by `|`. Include enough to verify you read the position correctly — not necessarily every pawn. The user checks this line before acting on any recommendation.
@@ -33,6 +41,8 @@ R1✓ R2✓ ... RN✗
 **Recommendation:** Move in standard algebraic notation, the triggered rule in brackets (e.g. `[R6: Development]`), and 1–2 sentences explaining why this rule fired and why this specific move satisfies it.
 
 **Trace:** Rule checks in order. `✓` = checked and did not trigger. `✗` = triggered here, stopped. Only show rules up to and including the triggered rule.
+
+**Loop prompt:** Always end with `Opponent's move?` on its own line. This signals the user to enter the opponent's response and continue the game.
 
 **Rejected moves:** Only mention when a "natural" move was blocked by a guard rail — state the move and the blocking rule. Do not list all candidate moves. No noise.
 
