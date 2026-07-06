@@ -1,0 +1,12 @@
+{
+  "name": "chessbrah-habits",
+  "description": "Chess habits coach based on the ChessBrah 'Building Habits' series. Applies a deterministic rule-priority decision tree across all four habit levels.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jeff Windsor"
+  },
+  "homepage": "https://github.com/jeffwindsor/chessbrah-habits",
+  "repository": "https://github.com/jeffwindsor/chessbrah-habits",
+  "license": "MIT",
+  "skills": "./skills"
+}
