@@ -62,10 +62,35 @@ Phase gates:
 ## Input Parsing
 
 Accept any of these:
-- `White. 1.e4 e5 2.Nf3 Nc6 3.Bc4 — your turn`
-- `I'm Black. They just played 3.Bc4.`
-- Full PGN paste
-- Free-form description of the last move
+
+**Move list:** `White. 1.e4 e5 2.Nf3 Nc6 3.Bc4 — your turn`
+
+**Last move only:** `I'm Black. They just played 3.Bc4.`
+
+**PGN with headers:**
+Paste a full PGN including the header block. Extract:
+- `[White "..."]` and `[Black "..."]` to identify player names
+- The human player is the one who is NOT a bot (look for "BOT", "Bot", "bot" in the name, or an Elo implying computer strength, or explicit context). If ambiguous, ask once: "Are you playing White or Black?"
+- Parse all moves and determine whose turn it is next from the move list
+- Strip PGN comments (text in `{ }`) before parsing moves
+- Apply the decision tree for the human player's next move
+
+Example — from this PGN the human is White (jeffwindsor), opponent is Black (The Park Ranger BOT). After `4... Be6` it is White's turn:
+```
+[White "jeffwindsor"]
+[Black "The Park Ranger"]
+1. e4 c5 2. Nf3 d6 3. Nc3 Nf6 4. Bc4 Be6 *
+```
+
+**Board image (PNG/screenshot):**
+When the user pastes an image of a chess board:
+1. Read the board position — identify all pieces and their squares
+2. Determine orientation: the human's pieces are typically at the bottom of the image; use the king/queen placement on the back rank to confirm color (queen on her own color)
+3. Determine whose turn it is from any visible UI clues (active clock, move indicator) or from context in the conversation
+4. If color or turn cannot be determined from the image alone, ask once before proceeding
+5. Restate the position on the Board line as usual before recommending
+
+**Continuation:** After the first input establishes level and color, a bare move (e.g. `Nc6` or `they played Nc6`) is treated as the opponent's response. Append it to the running game record and apply the decision tree for the human's next move.
 
 Color and side are stated once per game (or re-stated on switch). Track the full game through the conversation.
 
